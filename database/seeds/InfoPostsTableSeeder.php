@@ -12,8 +12,18 @@ class InfoPostsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        
+        $posts = Post::all();
+
+        foreach ($posts as $post) {
+            $infoPost = new InfoPost();
+            $infoPost->post_id = $post->id;
+            $infoPost->category = $faker->word();
+            $infoPost->section = $faker->word();
+
+            $infoPost->save();
+
+        }
     }
 }
