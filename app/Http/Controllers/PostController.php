@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\InfoPost;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -27,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {   
-        return view('posts.create');
+        $infos = InfoPost::all();
+        $tags = Tag::all();
+        return view('posts.create', compact('tags', 'infos'));
     }
 
     /**
@@ -41,7 +44,9 @@ class PostController extends Controller
         $data = $request->all();
         $newPost = new Post();
         $newPost->fill($data);
-        $newPost->save;
+        $newPost->save();
+
+
 
         return redirect()->route('posts.index');
     }

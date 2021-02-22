@@ -35,7 +35,7 @@
                 @endforeach
             </tbody>
         </table>  
-        {{-- <a class="btn btn-dark" href="{{route('beers.create')}}">Crea Nuovo</a> --}}
+        <a class="btn btn-dark" href="{{route('posts.create')}}">Crea Nuovo</a>
      </div>
     </div>
 @endsection

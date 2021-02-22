@@ -32,12 +32,21 @@
         <textarea class="form-control" name="content" id="content" rows="6"></textarea>
     </div>
 
-   {{-- @foreach ($post->infoPost as $info)
+    <h3>Tags</h3>
+    @foreach ($tags as $tag)
          <div class="custom-control custom-checkbox mb-3">
-            <input type="checkbox" class="custom-control-input" id="" required>
-            <label class="custom-control-label" for="">{{$info->category}}</label>
+            <input type="checkbox" class="custom-control-input" id="tag-{{$tag->id}}" name="tags[]">
+            <label class="custom-control-label" for="tag-{{$tag->id}}" value="tag-{{$tag->id}}">{{$tag->name}}</label>
         </div>
-   @endforeach --}}
+    @endforeach
+
+    <h3>Categories</h3>
+    @foreach ($infos as $info)
+        <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="tag-{{$info->id}}" name="tags[]">
+             <label class="custom-control-label" for="tag-{{$info->id}}" value="tag-{{$info->id}}">{{$info->category}}</label>
+        </div>
+    @endforeach
 
     <input class="btn btn-dark" type="submit" value="invia">
 
