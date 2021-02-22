@@ -13,6 +13,9 @@
         <!-- Styles -->
         
     <body>
+        <div class="text-center mb-5">
+            <h1>TUTTI I MIEI ARTICOLI</h1>
+        </div>
         <div class="container d-flex flex-wrap justify-content-between">
             @foreach ($posts as $post)
             
