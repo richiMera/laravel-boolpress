@@ -52,6 +52,10 @@ class PostController extends Controller
         $newInfo->fill($data);
         $newInfo->save();
 
+
+        if(!empty($data["tags"])) {
+            $newPost->tags()->attach($data["tags"]);
+        };
         
 
 
@@ -75,9 +79,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Post $post)
+    {   
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -87,10 +92,23 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {   
         $data = $request->all();
         $data['slug'] = Str::slug($data['title']);
+        $post->update($data);
+
+        $infoPost = $post->infoPost;
+        $infoPost->update($data);
+
+        if (empty($data['tags'])) {
+            $post->tags()->detach($data['tags']);
+        } else {
+            $post->tags()->sync($data['tags']);
+        }
+
+        return redirect()->route('posts.index');
+        
     }
 
     /**
@@ -99,8 +117,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return redirect()->route('posts.index');
     }
 }

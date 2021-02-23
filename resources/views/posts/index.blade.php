@@ -22,15 +22,15 @@
                     <td>{{$post->author}}</td>
                     <td> {{$post->infoPost->category}} </td>
                     <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-secondary">Mostra</a></td>
-                    {{-- <td><a href="{{route('beers.edit', $beer->id)}}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="{{route('posts.edit', $post->id)}}" class="btn btn-secondary">Edit</a></td>
                     <td>
-                        <form action="{{route('beers.destroy', $beer->id)}}" method="post">
+                        <form action="{{route('posts.destroy', $post->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">Delete</button>
                         </form>
                         
-                    </td>  --}}
+                    </td> 
                </tr>
                 @endforeach
             </tbody>
