@@ -16,8 +16,8 @@ class CreateInfoPostsTable extends Migration
         Schema::create('info_posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('post_id');
-            $table->string('category', 60);
-            $table->string('section', 70);
+            $table->string('post_status', 20);
+            $table->string('comment_status', 20);
             $table->timestamps();
 
             $table->foreign('post_id')

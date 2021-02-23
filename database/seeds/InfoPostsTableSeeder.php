@@ -19,8 +19,8 @@ class InfoPostsTableSeeder extends Seeder
         foreach ($posts as $post) {
             $infoPost = new InfoPost();
             $infoPost->post_id = $post->id;
-            $infoPost->category = $faker->word();
-            $infoPost->section = $faker->word();
+            $infoPost->post_status = $faker->randomElement(['public', 'private', 'draft']);
+            $infoPost->comment_status = $faker->randomElement(['open', 'closed']);
 
             $infoPost->save();
 

@@ -32,21 +32,31 @@
         <textarea class="form-control" name="content" id="content" rows="6"></textarea>
     </div>
 
-    <h3>Tags</h3>
+     <h3>Tags</h3>
     @foreach ($tags as $tag)
          <div class="custom-control custom-checkbox mb-3">
             <input type="checkbox" class="custom-control-input" id="tag-{{$tag->id}}" name="tags[]">
             <label class="custom-control-label" for="tag-{{$tag->id}}" value="tag-{{$tag->id}}">{{$tag->name}}</label>
         </div>
-    @endforeach
+    @endforeach 
 
-    <h3>Categories</h3>
-    @foreach ($infos as $info)
-        <div class="custom-control custom-checkbox mb-3">
-            <input type="checkbox" class="custom-control-input" id="tag-{{$info->id}}" name="tags[]">
-             <label class="custom-control-label" for="tag-{{$info->id}}" value="tag-{{$info->id}}">{{$info->category}}</label>
-        </div>
-    @endforeach
+    <div class="form-group">
+        <label class="" for="post_status">Stato del post</label>
+        <select class="custom-select my-1 mr-sm-2" id="post_status" name="post_status">
+          <option value="draft {{ old('post_status' == 'draft') ? 'selected' : ''}}">draft</option>
+          <option value="public {{ old('post_status' == 'public') ? 'selected' : ''}}">public</option>
+          <option value="private {{ old('post_status' == 'private') ? 'selected' : ''}}">private</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="" for="comment-status">Stato Commenti</label>
+        <select class="custom-select my-1 mr-sm-2" id="comment_status" name="comment_status">
+          <option value="open {{ old('comment_status' == 'open') ? 'selected' : ''}}">open</option>
+          <option value="closed {{ old('comment_status' == 'closed') ? 'selected' : ''}}">closed</option>
+        </select>
+    </div>
+
 
     <input class="btn btn-dark" type="submit" value="invia">
 
