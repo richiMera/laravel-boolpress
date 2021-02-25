@@ -21,7 +21,7 @@ class CommentsTableSeeder extends Seeder
 
                 $comment->post_id = $post->id;
                 $comment->user_name = $faker->userName();
-                $comment->text = $faker->text(10);
+                $comment->text = $faker->text(80);
 
                 $comment->save();
             }

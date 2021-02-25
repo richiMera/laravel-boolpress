@@ -1,17 +1,34 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <table class="table table-dark">
-        <tbody>
-                @foreach ($post->getAttributes() as $key => $value)
-                    <tr>
-                        <td>{{$key}}</td>
-                        <td>{{$value}}</td>
-                    </tr>
+
+    <div class="show_container">
+        <div class="show_wrapper">
+            <div class="show_title_box">
+                <h2 class="show_title">
+                    {{$post->title}}
+                </h2>
+            </div>
+            <h3 class="text-center my-5">{{$post->subtitle}}</h3>
+            <p>di <strong>{{$post->author}} - </strong>{{$post->content}}</p>
+            
+            <div class="comments_container my-5">
+                <h4>Commenti</h4>
+                @foreach ($post->comments as $comment)
+                    <div class="comment">
+                        <strong>{{$comment->user_name}}</strong>
+                        <p>{{$comment->text}}</p>
+                    </div>
+                    <div class="comment_action">
+                        <small>Mi piace</small>
+                        <small>Rispondi</small>
+                        <small>{{$comment->created_at}}</small>
+                    </div>
                 @endforeach
-        </tbody>
-    </table>
-    {{-- <a class="btn btn-primary" href="{{route('articles.index')}}">Torna alla Lista</a> --}}
-</div>
+            </div>
+        </div>
+
+        <a class="btn btn-primary mb-3" href="{{route('posts.index')}}">Torna alla Lista</a>
+    </div>
+
 @endsection

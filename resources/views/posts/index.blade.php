@@ -9,7 +9,8 @@
                     <th>TITLE</th>
                     <th>SUBTITLE</th>
                     <th>AUTHOR</th>
-                    <th>CATEGORY</th>
+                    <th>S_COMMENT</th>
+                    <th>S_POST</th>
                     <th>TAGS</th>
                 </tr>
            </thead>
@@ -20,9 +21,15 @@
                     <td>{{$post->title}}</td>
                     <td>{{$post->subtitle}}</td>
                     <td>{{$post->author}}</td>
-                    <td> {{$post->infoPost->category}} </td>
-                    <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-secondary">Mostra</a></td>
-                    <td><a href="{{route('posts.edit', $post->id)}}" class="btn btn-secondary">Edit</a></td>
+                    <td> {{$post->infoPost->comment_status}}</td>
+                    <td>{{$post->infoPost->post_status}}</td>
+                    <td>
+                        @foreach ($post->tags as $tag)
+                            {{$tag->name}}
+                        @endforeach
+                    </td>
+                    <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-info">Mostra</a></td>
+                    <td><a href="{{route('posts.edit', $post->id)}}" class="btn btn-success">Edit</a></td>
                     <td>
                         <form action="{{route('posts.destroy', $post->id)}}" method="post">
                             @csrf
